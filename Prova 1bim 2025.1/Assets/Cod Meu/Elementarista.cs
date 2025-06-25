@@ -1,23 +1,35 @@
 using UnityEngine;
 
-
-public class Elementarista : Personagem
+public class Elementalista : PersonagemGen
 {
-    [Header("Habilidade Especial")]
-    public string habilidadeEspecial = "Tempestade de Gelo";
-    
-    public void AtribuirHabilidadeEspecial(string novaHabilidade)
+    [SerializeField]
+    private string elementoPrincipal;
+    [SerializeField]
+    private int poderMagico;
+
+
+    public void SetElementoPrincipal(string novoElemento)
     {
-        this.habilidadeEspecial = novaHabilidade;
+        elementoPrincipal = novoElemento;
     }
-   
-    public string LerHabilidadeEspecial()
+
+    public string GetElementoPrincipal()
     {
-        return this.habilidadeEspecial;
+        return elementoPrincipal;
     }
-    
-    public void UsarHabilidade()
+
+    public void SetPoderMagico(int novoPoder)
     {
-        Debug.Log(nome + " usou a habilidade: " + habilidadeEspecial);
+        poderMagico = novoPoder;
+    }
+
+    public int GetPoderMagico()
+    {
+        return poderMagico;
+    }
+
+    public void LançarFeitiço()
+    {
+        Debug.Log($"{GetNome()} lançou um feitiço de {elementoPrincipal} com poder {poderMagico}!");
     }
 }

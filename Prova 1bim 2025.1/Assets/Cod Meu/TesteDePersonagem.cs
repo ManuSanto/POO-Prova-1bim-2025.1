@@ -2,41 +2,31 @@ using UnityEngine;
 
 public class TestePersonagem : MonoBehaviour
 {
-    public Personagem inimigo;
-    public Elementarista elementarista;
-
     void Start()
     {
-        
-        inimigo.AtribuirNome("Inimigo");
-        inimigo.AtribuirEnergia(100);
-        inimigo.AtribuirForca(80);
-        inimigo.AtribuirVelocidade(60f);
+        PersonagemGen personagem = new GameObject("PersonagemGen").AddComponent<PersonagemGen>();
+        personagem.SetNome("Arqueiro");
+        personagem.SetEnergia(100);
+        personagem.SetForcaAtaque(30);
+        personagem.SetForcaDoPulo(2.5f);
+        personagem.SetVelocidade(6.0f);
 
-        
-        elementarista.AtribuirNome("Elementarista");
-        elementarista.AtribuirEnergia(120);
-        elementarista.AtribuirForca(75);
-        elementarista.AtribuirVelocidade(70f);
-        elementarista.AtribuirHabilidadeEspecial("Tempestade de Gelo");
+        Debug.Log($"Personagem Genérico: {personagem.GetNome()}, Energia: {personagem.GetEnergia()}, Força de Ataque: {personagem.GetForcaAtaque()}, Força do Pulo: {personagem.GetForcaDoPulo()}, Velocidade: {personagem.GetVelocidade()}");
 
-        
-        Debug.Log("===== Inimigo =====");
-        Debug.Log("Nome: " + inimigo.LerNome());
-        Debug.Log("Energia: " + inimigo.LerEnergia());
-        Debug.Log("Força: " + inimigo.LerForca());
-        Debug.Log("Velocidade: " + inimigo.LerVelocidade());
+        Elementalista elementalista = new GameObject("Elementalista").AddComponent<Elementalista>();
+        elementalista.SetNome("Eldrin");
+        elementalista.SetEnergia(120);
+        elementalista.SetForcaAtaque(10);
+        elementalista.SetForcaDoPulo(3.5f);
+        elementalista.SetVelocidade(5.0f);
+        elementalista.SetElementoPrincipal("Fogo");
+        elementalista.SetPoderMagico(80);
 
-        Debug.Log("===== Elementarista =====");
-        Debug.Log("Nome: " + elementarista.LerNome());
-        Debug.Log("Energia: " + elementarista.LerEnergia());
-        Debug.Log("Força: " + elementarista.LerForca());
-        Debug.Log("Velocidade: " + elementarista.LerVelocidade());
-        Debug.Log("Habilidade: " + elementarista.LerHabilidadeEspecia());
+        Debug.Log($"Elementalista: {elementalista.GetNome()}, Energia: {elementalista.GetEnergia()}, Força de Ataque: {elementalista.GetForcaAtaque()}, Força do Pulo: {elementalista.GetForcaDoPulo()}, Velocidade: {elementalista.GetVelocidade()}, Elemento: {elementalista.GetElementoPrincipal()}, Poder Mágico: {elementalista.GetPoderMagico()}");
 
-        
-        inimigo.CompararForca(elementarista);
+        elementalista.LançarFeitiço();
 
-        elementarista.UsarHabilidade();
+        bool mesmaEnergia = personagem.CompararEnergia(elementalista);
+        Debug.Log($"Personagem Genérico e Elementalista têm a mesma energia? {mesmaEnergia}");
     }
 }
